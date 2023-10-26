@@ -20,9 +20,9 @@ namespace ProyectoAula4MVC.Models
             return departamento;
         }
 
-        public Departamentos crearDepartamento(string nombreDepartamento) 
+        public Departamentos crearDepartamento(string nombreDepartamento)
         {
-            Departamentos departamento = new Departamentos() 
+            Departamentos departamento = new Departamentos()
             {
                 Nombre = nombreDepartamento,
             };
@@ -31,18 +31,18 @@ namespace ProyectoAula4MVC.Models
             return departamento;
         }
 
-        public Impactos buscarImpactoById(int id) 
+        public Impactos buscarImpactoById(int id)
         {
             Impactos impacto = db.Impactos.Find(id);
             return impacto;
         }
-        public Impactos buscarImpactoByNombre(string nombreImpacto) 
+        public Impactos buscarImpactoByNombre(string nombreImpacto)
         {
-            Impactos impacto = db.Impactos.FirstOrDefault( i => i.Nombre == nombreImpacto );  
+            Impactos impacto = db.Impactos.FirstOrDefault(i => i.Nombre == nombreImpacto);
             return impacto;
         }
 
-        public Impactos crearImpacto(string nombreImpacto) 
+        public Impactos crearImpacto(string nombreImpacto)
         {
             Impactos impacto = new Impactos()
             {
@@ -51,7 +51,7 @@ namespace ProyectoAula4MVC.Models
             db.Impactos.Add(impacto);
             db.SaveChanges();
             return impacto;
-            
+
         }
 
         public Herramientas4RI buscarHerramientaById(int id)
@@ -66,7 +66,7 @@ namespace ProyectoAula4MVC.Models
             return herramienta;
         }
 
-        public Herramientas4RI crearHerramienta(string nombreHerramienta) 
+        public Herramientas4RI crearHerramienta(string nombreHerramienta)
         {
             Herramientas4RI herramienta = new Herramientas4RI()
             {
@@ -75,6 +75,31 @@ namespace ProyectoAula4MVC.Models
             db.Herramientas4RI.Add(herramienta);
             db.SaveChanges();
             return herramienta;
+        }
+
+        public void crearIntegrante(int idIdea, IntegranteViewModel model)
+        {
+            Integrantes integrante = new Integrantes();
+            integrante.ID_Idea = idIdea;
+            integrante.NumIdentificacion = model.NumId;
+            integrante.Nombre = model.Nombre;
+            integrante.Apellidos = model.Apellidos;
+            integrante.Rol = model.Rol;
+            integrante.Email = model.Email;
+            db.Integrantes.Add(integrante);
+            db.SaveChanges();
+        }
+
+        public Integrantes buscarIntegranteaById(int id)
+        {
+            Integrantes integrante = db.Integrantes.Find(id);
+            return integrante;
+        }
+
+        public void eliminarIntegrante(Integrantes integrante) 
+        {
+            db.Integrantes.Remove(integrante);
+            db.SaveChanges();
         }
 
         public Ideas_De_Negocio buscarIdeaById(int? id) 
@@ -98,6 +123,13 @@ namespace ProyectoAula4MVC.Models
             return idea;
             
         }
+
+        public void editarIdea(EditarIdeaViewModel model, Ideas_De_Negocio idea) 
+        {
+            idea.Valor_Inversion = model.ValorInversion;
+            idea.Total_Ingresos= model.TotalIngresos;
+        }
+
 
         public void crearDepartamentosIdea(List<Departamentos> departamentos, Ideas_De_Negocio idea) 
         {

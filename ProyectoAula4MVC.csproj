@@ -241,12 +241,12 @@
     <Content Include="Views\IdeasDeNegocio\RegistrarIdea.cshtml" />
     <Content Include="Views\IdeasDeNegocio\Index.cshtml" />
     <Content Include="Views\IdeasDeNegocio\DetallesIdea.cshtml" />
+    <Content Include="Views\Estadisticas\Index.cshtml" />
+    <Content Include="Views\IdeasDeNegocio\EditarIdea.cshtml" />
     <Content Include="Views\Departamentos\Create.cshtml" />
-    <Content Include="Views\Departamentos\Delete.cshtml" />
     <Content Include="Views\Departamentos\Details.cshtml" />
     <Content Include="Views\Departamentos\Edit.cshtml" />
     <Content Include="Views\Departamentos\Index.cshtml" />
-    <Content Include="Views\Estadisticas\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

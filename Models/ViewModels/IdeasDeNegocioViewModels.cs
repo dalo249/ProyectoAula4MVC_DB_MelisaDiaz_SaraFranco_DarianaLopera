@@ -53,12 +53,64 @@ namespace ProyectoAula4MVC.Models.ViewModels
 
     public class DetallesIdeaViewModel
     {
+
         [Display(Name = "Idea de Negocio")]
         public Ideas_De_Negocio Idea { get; set; }
 
 
         [Display(Name = "Departamentos beneficiados")]
         public List<Departamentos_Idea> Departamentos { get; set; }
+
+
+    }
+
+    public class EditarIdeaViewModel 
+    {
+        [Required]
+        [Display(Name = "Id idea")]
+        public int IdIdea { get; set; }
+
+
+        [Required]
+        [Display(Name = "Valor de inversion")] 
+        [Range(0, 9999999999, ErrorMessage = "La cantidad no puede ser negativa.")]
+        public decimal ValorInversion { get; set; }
+
+
+
+        [Required]
+        [Display(Name = "Total de ingresos")]
+        [Range(0, 9999999999, ErrorMessage = "La cantidad no puede ser negativa.")]
+        public decimal TotalIngresos { get; set; }
+
+
+        [Required]
+        [Display(Name = "Integrantes")]
+        public List<IntegranteViewModel> Integrantes { get; set; }
+    }
+    public class IntegranteViewModel
+    {
+
+        [Required]
+        [Display(Name = "NumId")]
+        public int NumId { get; set; }
+
+        [Required]
+        [Display(Name = "Nombre")]
+        public string Nombre { get; set; }
+
+        [Required]
+        [Display(Name = "Apellidos")]
+        public string Apellidos { get; set; }
+
+        [Required]
+        [Display(Name = "Rol")]
+        public string Rol { get; set; }
+
+        [Required]
+        [EmailAddress(ErrorMessage = "Debe ingresar un correo electrónico válido.")]
+        [Display(Name = "Correo electronico")]
+        public string Email { get; set; }
 
 
     }

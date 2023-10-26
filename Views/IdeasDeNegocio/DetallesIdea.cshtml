@@ -58,23 +58,28 @@
             <table class="table">
                 <thead>
                     <tr>
-                        <th>Id</th>
-                        <th>Nombre Completo</th>
+                        <th>Identificacion</th>
+                        <th>Nombre</th>
+                        <th>Apellidos</th>
                         <th>Rol</th>
                         <th>Email</th>
                     </tr>
                 </thead>
                 <tbody>
-                    
-                    
+                    @foreach (var integrante in Model.Idea.Integrantes)
+                    {
                         <tr>
-                            <td> </td>
-                            <td> </td>
-                            <td> </td>
-                            <td> </td>
+
+                            <td>@integrante.NumIdentificacion</td>
+                            <td>@integrante.Nombre</td>
+                            <td>@integrante.Apellidos</td>
+                            <td>@integrante.Rol</td>
+                            <td>@integrante.Email</td>
+                            <td>@Html.ActionLink("Eliminar", "EliminarIntegrante", new { idIntegrante = integrante.ID_Integrante }, new { @class = "btn btn-danger" })</td>
 
                         </tr>
-                    
+                    }
+
                 </tbody>
             </table>
 

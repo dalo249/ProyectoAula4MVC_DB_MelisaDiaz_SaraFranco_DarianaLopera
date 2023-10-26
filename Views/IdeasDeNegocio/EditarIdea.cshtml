@@ -1,0 +1,157 @@
+﻿@model ProyectoAula4MVC.Models.ViewModels.EditarIdeaViewModel
+@{
+    ViewBag.Title = "Editar Idea de negocio ";
+}
+
+<h2>@ViewBag.Title</h2>
+
+
+@using (Html.BeginForm("EditarIdea", "IdeasDeNegocio", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        @Html.HiddenFor(model => model.IdIdea)
+
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group">
+            @Html.LabelFor(model => model.ValorInversion, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-15">
+                @Html.TextBoxFor(model => model.ValorInversion, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.ValorInversion, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <br>
+        <div class="form-group">
+            @Html.LabelFor(model => model.TotalIngresos, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-15">
+                @Html.TextBoxFor(model => model.TotalIngresos, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.TotalIngresos, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <br>
+        @Html.LabelFor(model => model.Integrantes, htmlAttributes: new { @class = "control-label col-md-6" })
+        <br>
+        <div class="row">
+            <div class="form-group">
+                <table >
+                    <tr>
+                        <td>Identificacion</td>
+                        <td>Nombre</td>
+                        <td>Apellidos</td>
+                        <td>Rol</td>
+                        <td>Email</td>
+                    </tr>
+                    <tr>
+                        <td><input class="form-control" type="number" id="NumIdI" /></td>
+                        <td><input class="form-control" type="text" id="NombreI" /></td>
+                        <td><input class="form-control" type="text" id="ApellidosI" /></td>
+                        <td><input class="form-control" type="text" id="RolI" /></td>
+                        <td><input class="form-control" type="text" id="EmailI" /></td>
+                        <td><input class="btn btn-primary" value="Agregar" type="button" onclick="AgregarIntegrante(); return false;" /></td>
+                    </tr>
+                </table>
+          
+            </div>
+            <div id="divIntegrantes">
+                <table id="tablaIntegrantes" class="table">
+                    <tr>
+                        <td>Identificacion</td>
+                        <td>Nombre</td>
+                        <td>Apellidos</td>
+                        <td>Rol</td>
+                        <td>Email</td>
+                        <td> </td>
+                    </tr>
+                    <tr>
+                       
+                    </tr>
+                </table>
+            </div>
+        </div>
+        <br>
+        <div style="text-align:left">
+            <input type="submit" class="btn btn-primary" value="Editar" />
+        </div>
+</div>
+
+
+}
+
+<script>
+    var num = 0;
+    function AgregarIntegrante() {
+        //Guardar variable nombre ingresado
+        let NumId = document.getElementById("NumIdI").value;
+        let Nombre = document.getElementById("NombreI").value;
+        let Apellidos = document.getElementById("ApellidosI").value;
+        let Rol = document.getElementById("RolI").value;
+        let Email = document.getElementById("EmailI").value;
+
+
+        //Crear un renglon vacio para agregar
+        //Mostrar el departmento registrado en la lista
+        let Tabla = document.getElementById("tablaIntegrantes");
+        let TR = document.createElement("tr");
+        let TDNumId = document.createElement("td");
+        let TDNombre = document.createElement("td");
+        let TDApellidos = document.createElement("td");
+        let TDRol = document.createElement("td");
+        let TDEmail = document.createElement("td");
+        TR.appendChild(TDNumId);
+        TR.appendChild(TDNombre);
+        TR.appendChild(TDApellidos);
+        TR.appendChild(TDRol);
+        TR.appendChild(TDEmail);
+        TDNumId.innerHTML = NumId;
+        TDNombre.innerHTML = Nombre;
+        TDApellidos.innerHTML = Apellidos;
+        TDRol.innerHTML = Rol;
+        TDEmail.innerHTML = Email;
+        Tabla.appendChild(TR);
+
+        //Agregar departamentos a lista departamentos del modelo
+        let DivIntegrantes = document.getElementById("divIntegrantes");
+        let HiddenIndex = document.createElement("input");
+        let HiddenNumId = document.createElement("input");
+        let HiddenNombre = document.createElement("input");
+        let HiddenApellidos = document.createElement("input");
+        let HiddenRol = document.createElement("input");
+        let HiddenEmail = document.createElement("input");
+        HiddenIndex.name = "Integrantes.Index";
+        HiddenIndex.value = num;
+        HiddenIndex.type = "hidden";
+        HiddenNumId.name = "Integrantes[" + num + "].NumId";
+        HiddenNumId.value = NumId;
+        HiddenNumId.type = "hidden";
+        HiddenNombre.name = "Integrantes[" + num + "].Nombre";
+        HiddenNombre.value = Nombre;
+        HiddenNombre.type = "hidden";
+        HiddenApellidos.name = "Integrantes[" + num + "].Apellidos";
+        HiddenApellidos.value = Apellidos;
+        HiddenApellidos.type = "hidden";
+        HiddenRol.name = "Integrantes[" + num + "].Rol";
+        HiddenRol.value = Rol;
+        HiddenRol.type = "hidden";
+        HiddenEmail.name = "Integrantes[" + num + "].Email";
+        HiddenEmail.value = Email;
+        HiddenEmail.type = "hidden";
+        DivIntegrantes.appendChild(HiddenIndex);
+        DivIntegrantes.appendChild(HiddenNumId);
+        DivIntegrantes.appendChild(HiddenNombre);
+        DivIntegrantes.appendChild(HiddenApellidos);
+        DivIntegrantes.appendChild(HiddenRol);
+        DivIntegrantes.appendChild(HiddenEmail);
+
+
+        //Borrar el valor del input para agregar mas
+        document.getElementById("NumIdI").value = "";
+        document.getElementById("NombreI").value = "";
+        document.getElementById("ApellidosI").value = "";
+        document.getElementById("RolI").value = "";
+        document.getElementById("EmailI").value = "";
+
+        num++;
+
+    }
+</script>

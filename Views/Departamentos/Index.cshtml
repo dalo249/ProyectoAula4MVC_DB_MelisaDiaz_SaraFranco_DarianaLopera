@@ -1,13 +1,13 @@
 ﻿@model IEnumerable<ProyectoAula4MVC.Models.DB.Departamentos>
 
 @{
-    ViewBag.Title = "Lista de departamentos";
+    ViewBag.Title = "Lista departamentos";
 }
 
-<h2>Index</h2>
+<h2>Departamentos</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("Crear departamento", "Create", new { @class = "btn btn-primary" })
 </p>
 <table class="table">
     <tr>
@@ -23,10 +23,10 @@
             @Html.DisplayFor(modelItem => item.Nombre)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.ID_Departamento }) |
-            @Html.ActionLink("Details", "Details", new { id=item.ID_Departamento }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.ID_Departamento })
+            @Html.ActionLink("Editar", "Edit", new { id = item.ID_Departamento }, new { @class = "btn btn-primary" })
+            @Html.ActionLink("Detalles", "Details", new { id = item.ID_Departamento }, new { @class = "btn btn-primary" })
         </td>
+
     </tr>
 }
 

@@ -7,12 +7,13 @@ using ProyectoAula4MVC.Models;
 using ProyectoAula4MVC.Models.DB;
 using ProyectoAula4MVC.Models.ViewModels;
 using System.Net;
+using System.Web.UI.WebControls;
 
 namespace ProyectoAula4MVC.Controllers
 {
     public class IdeasDeNegocioController : Controller
     {
-        IdeasDeNegocioDTO ideasDTO = new IdeasDeNegocioDTO();
+        private IdeasDeNegocioDTO ideasDTO = new IdeasDeNegocioDTO();
         private ProyectoAula4MVC_DBEntities db = new ProyectoAula4MVC_DBEntities();
 
         // GET: Muestra lista global de ideas de negocio
@@ -25,7 +26,7 @@ namespace ProyectoAula4MVC.Controllers
 
         //GET: formulario registrar idea
         [HttpGet]
-        public ActionResult RegistrarIdea() 
+        public ActionResult RegistrarIdea()
         {
             return View();
         }
@@ -34,11 +35,11 @@ namespace ProyectoAula4MVC.Controllers
         [HttpPost]
         public ActionResult RegistrarIdea(RegistroIdeaViewModel model)
         {
-            try 
+            try
             {
                 if (!ModelState.IsValid)
-                {                  
-                    return View(model);              
+                {
+                    return View(model);
                 }
 
                 if (model.Departamentos.Count == 0)
@@ -58,13 +59,13 @@ namespace ProyectoAula4MVC.Controllers
                 }
 
                 Impactos impacto = ideasDTO.buscarImpactoByNombre(model.Impacto.ToLower());
-                while(impacto == null)
+                while (impacto == null)
                 {
                     impacto = ideasDTO.crearImpacto(model.Impacto.ToLower());
                 }
 
                 Herramientas4RI herramienta = ideasDTO.buscarHerramientaByNombre(model.Herramienta4RI.ToLower());
-                while(herramienta == null)
+                while (herramienta == null)
                 {
                     herramienta = ideasDTO.crearHerramienta(model.Herramienta4RI.ToLower());
                 }
@@ -74,24 +75,19 @@ namespace ProyectoAula4MVC.Controllers
 
                 return RedirectToAction("Index");
             }
-            catch 
+            catch
             {
                 return View(model);
             }
 
         }
 
-        //GET: Muesta toda la informacion de una idea.
+        //GET: Muestra toda la informacion de una idea.
         [HttpGet]
         public ActionResult DetallesIdea(int? id)
         {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
 
             Ideas_De_Negocio idea = ideasDTO.buscarIdeaById(id);
-            
             if (idea == null)
             {
                 return HttpNotFound();
@@ -104,7 +100,71 @@ namespace ProyectoAula4MVC.Controllers
                 Departamentos = deptosIdea,
             };
             return View(ideaConDeptos);
+        }
 
+        //GET: Muestra formulario para editar una idea.
+        [HttpGet]
+        public ActionResult EditarIdea(int Id)
+        {
+
+            Ideas_De_Negocio idea = ideasDTO.buscarIdeaById(Id);
+            if (idea == null)
+            {
+                return HttpNotFound();
+            }
+
+            EditarIdeaViewModel model = new EditarIdeaViewModel();
+            model.IdIdea = idea.ID_Idea;
+            model.ValorInversion = idea.Valor_Inversion;
+            model.TotalIngresos = idea.Total_Ingresos;
+            model.Integrantes = new List<IntegranteViewModel>();
+
+
+            return View(model);
+        }
+
+        //POST: Cambia los valores editados de la idea.
+        [HttpPost]
+        public ActionResult EditarIdea(EditarIdeaViewModel model)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View(model);
+            }
+
+            Ideas_De_Negocio idea = ideasDTO.buscarIdeaById(model.IdIdea);
+            if (idea == null)
+            {
+                return HttpNotFound();
+            }
+
+            ideasDTO.editarIdea(model, idea);
+
+            if (model.Integrantes.Count == 0)
+            {
+                return RedirectToAction("DetallesIdea", new { id = model.IdIdea });
+            }
+
+            foreach (var integrante in model.Integrantes)
+            {
+                ideasDTO.crearIntegrante(model.IdIdea, integrante);
+            }
+
+            return RedirectToAction("DetallesIdea", new { id = model.IdIdea });
+        }
+
+        [HttpGet]
+        public ActionResult EliminarIntegrante(int idIntegrante) 
+        {
+            Integrantes integrante = ideasDTO.buscarIntegranteaById(idIntegrante);
+            if (integrante == null)
+            {
+                return HttpNotFound();
+            }
+
+            ideasDTO.eliminarIntegrante(integrante);
+
+            return RedirectToAction("DetallesIdea", new { id = integrante.ID_Idea });
         }
     }
 }
