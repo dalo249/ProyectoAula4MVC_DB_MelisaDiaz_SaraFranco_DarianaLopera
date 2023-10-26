@@ -1,0 +1,82 @@
+﻿@model ProyectoAula4MVC.Models.ViewModels.DetallesIdeaViewModel
+@{
+    ViewBag.Title = "Detalles Idea de negocio";
+}
+
+<h2>@ViewBag.Title</h2>
+
+
+@using (Html.BeginForm())
+{
+    <body>
+
+        <intput typeof="hidden" name="idIdea" value="@Model.Idea.ID_Idea">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Nombre</th>
+                        <th>Valor de inversion</th>
+                        <th>Inversion en infraestructura</th>
+                        <th>Igresos 3 años</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>@Html.DisplayFor(model => model.Idea.Nombre)</td>
+                        <td>@Html.DisplayFor(model => model.Idea.Valor_Inversion)</td>
+                        <td>@Html.DisplayFor(model => model.Idea.Valor_Inversion_Infraestructura)</td>
+                        <td>@Html.DisplayFor(model => model.Idea.Total_Ingresos)</td>
+                    </tr>
+                </tbody>
+            </table>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Impacto</th>
+                        <th>Herramientas de la 4R.I</th>
+                        <th>Departamentos</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>@Html.DisplayFor(model => model.Idea.Impactos.Nombre)</td>
+                        <td>@Html.DisplayFor(model => model.Idea.Herramientas4RI.Nombre)</td>
+                        <td>
+                            <ul class="list-group">
+                                @foreach (var depto in Model.Departamentos)
+                                {
+                                    <li>@depto.Departamentos.Nombre</li>
+                                }
+                            </ul>
+                        </td>
+
+                    </tr>
+                </tbody>
+            </table>
+            <br>
+            <h6>Integrantes</h6>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Id</th>
+                        <th>Nombre Completo</th>
+                        <th>Rol</th>
+                        <th>Email</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    
+                    
+                        <tr>
+                            <td> </td>
+                            <td> </td>
+                            <td> </td>
+                            <td> </td>
+
+                        </tr>
+                    
+                </tbody>
+            </table>
+
+    </body>
+}

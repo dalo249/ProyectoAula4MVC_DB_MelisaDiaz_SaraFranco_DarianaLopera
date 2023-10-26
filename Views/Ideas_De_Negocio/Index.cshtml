@@ -1,0 +1,63 @@
+﻿@model IEnumerable<ProyectoAula4MVC.Models.DB.Ideas_De_Negocio>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Nombre)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Valor_Inversion)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Valor_Inversion_Infraestructura)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Total_Ingresos)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Herramientas4RI.Nombre)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Impactos.Nombre)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Nombre)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Valor_Inversion)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Valor_Inversion_Infraestructura)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Total_Ingresos)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Herramientas4RI.Nombre)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Impactos.Nombre)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.ID_Idea }) |
+            @Html.ActionLink("Details", "Details", new { id=item.ID_Idea }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.ID_Idea })
+        </td>
+    </tr>
+}
+
+</table>

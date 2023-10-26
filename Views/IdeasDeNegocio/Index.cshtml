@@ -1,0 +1,40 @@
+﻿@model IEnumerable<ProyectoAula4MVC.Models.DB.Ideas_De_Negocio>
+    @{
+        ViewBag.Title = "Ideas de negocio";
+    }
+
+    <h2>@ViewBag.Title</h2>
+
+    <a class='btn btn-primary btn-sm' href='/IdeasDeNegocio/RegistrarIdea'>Registrar idea de negocio</a>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Nombre</th>
+                <th>Impacto</th>
+                <th>Valor inversion</th>
+                <th>Inversion infraestructura</th>
+                <th>Ingresos 3 años</th>
+                <th>Herramientas 4RI</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@Html.DisplayFor(modelItem => item.Nombre)</td>
+                    <td>@Html.DisplayFor(modelItem => item.Impactos.Nombre)</td>
+                    <td>@Html.DisplayFor(modelItem => item.Valor_Inversion)</td>
+                    <td>@Html.DisplayFor(modelItem => item.Valor_Inversion_Infraestructura)</td>
+                    <td>@Html.DisplayFor(modelItem => item.Total_Ingresos)</td>
+                    <td>@Html.DisplayFor(modelItem => item.Herramientas4RI.Nombre)</td>
+                    <td>
+                        @Html.ActionLink("Editar", "EditarIdea", new { Id = item.ID_Idea }, new { @class = "btn btn-primary" })
+                        @Html.ActionLink("Detalles", "DetallesIdea", new { Id = item.ID_Idea }, new { @class = "btn btn-primary" })
+
+                    </td>
+
+                </tr>
+            }
+
+        </tbody>
+    </table>

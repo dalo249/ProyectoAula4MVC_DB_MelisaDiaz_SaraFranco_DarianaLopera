@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="c564a156db6a4c68a85d4c0d5ba8be25" Name="Diagram1">
+        <EntityTypeShape EntityType="ProyectoAula4MVC_DBModel.Departamentos" Width="1.5" PointX="8.125" PointY="2.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ProyectoAula4MVC_DBModel.Departamentos_Idea" Width="1.5" PointX="5.5" PointY="2.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="ProyectoAula4MVC_DBModel.Herramientas4RI" Width="1.5" PointX="0.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ProyectoAula4MVC_DBModel.Ideas_De_Negocio" Width="1.5" PointX="3" PointY="3" IsExpanded="true" />
+        <EntityTypeShape EntityType="ProyectoAula4MVC_DBModel.Impactos" Width="1.5" PointX="2.75" PointY="0.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="ProyectoAula4MVC_DBModel.Integrantes" Width="1.5" PointX="3" PointY="7" IsExpanded="true" />
+        <AssociationConnector Association="ProyectoAula4MVC_DBModel.FK_Departamentos_Idea_Departamentos" ManuallyRouted="false" />
+        <AssociationConnector Association="ProyectoAula4MVC_DBModel.FK_Departamentos_Idea_Ideas_De_Negocio" ManuallyRouted="false" />
+        <AssociationConnector Association="ProyectoAula4MVC_DBModel.FK_Ideas_De_Negocio_Herramientas4RI" ManuallyRouted="false" />
+        <AssociationConnector Association="ProyectoAula4MVC_DBModel.FK_Ideas_De_Negocio_Impactos" ManuallyRouted="false" />
+        <AssociationConnector Association="ProyectoAula4MVC_DBModel.FK_Integrantes_Ideas_De_Negocio" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

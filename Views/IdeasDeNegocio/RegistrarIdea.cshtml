@@ -1,0 +1,126 @@
+﻿@model ProyectoAula4MVC.Models.ViewModels.RegistroIdeaViewModel
+@{
+    ViewBag.Title = "Registrar Idea de negocio";
+}
+
+<h2>@ViewBag.Title</h2>
+
+
+@using (Html.BeginForm("RegistrarIdea", "IdeasDeNegocio", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+
+<div class="form-horizontal">
+
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    <div class="form-group">
+        @Html.LabelFor(model => model.Nombre, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-15">
+            @Html.TextBoxFor(model => model.Nombre, new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.Nombre, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <br>
+    <div class="form-group">
+        @Html.LabelFor(model => model.Impacto, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-15">
+            @Html.TextBoxFor(model => model.Impacto, new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.Impacto, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <br>
+    <div class="form-group">
+        @Html.LabelFor(model => model.ValorInversion, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-15">
+            @Html.TextBoxFor(model => model.ValorInversion, new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.ValorInversion, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <br>
+    <div class="form-group">
+        @Html.LabelFor(model => model.ValorInversionInfraestructura, htmlAttributes: new { @class = "control-label col-md-10" })
+        <div class="col-md-15">
+            @Html.TextBoxFor(model => model.ValorInversionInfraestructura, new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.ValorInversionInfraestructura, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <br>
+    <div class="form-group">
+        @Html.LabelFor(model => model.TotalIngresos, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-15">
+            @Html.TextBoxFor(model => model.TotalIngresos, new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.TotalIngresos, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <br>
+    <div class="form-group">
+        @Html.LabelFor(model => model.Herramienta4RI, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-15">
+            @Html.TextBoxFor(model => model.Herramienta4RI, new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.Herramienta4RI, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <br>
+    @Html.LabelFor(model => model.Departamentos, htmlAttributes: new { @class = "control-label col-md-6" })
+    <br>
+    <div class="row">
+        <div id="divDepartamentos">
+            <table id="tablaDepartamentos">
+                
+            </table>
+            <input type="hidden" name="Departamentos.Index" id="Departamentos.Index">
+        </div>
+        <div class="form-group">
+            Nombre
+            <br>
+            <input class="form-control" type="text" id="NombreDepartamento" />
+            <input class="form-control" value="Agregar" type="button" onclick="AgregarDepartamento(); return false;" />
+        </div>
+    </div>
+    <br>
+    <div style="text-align:left">
+        <input type="submit" class="btn btn-primary" value="Registrar" />
+    </div>
+</div>
+
+
+}
+
+<script>
+    var num = 0;
+    function AgregarDepartamento() {
+        //Guardar variable nombre ingresado
+        let Nombre = document.getElementById("NombreDepartamento").value;
+
+        //Crear un renglon vacio para agregar
+        //Mostrar el departmento registrado en la lista
+        let Tabla = document.getElementById("tablaDepartamentos");
+        let TR = document.createElement("tr");
+        let TDNombre = document.createElement("td");
+        TR.appendChild(TDNombre);
+        TDNombre.innerHTML = Nombre;
+        Tabla.appendChild(TR);
+
+        //Agregar departamentos a lista departamentos del modelo
+        let DivDepartamentos = document.getElementById("divDepartamentos");
+        let HiddenIndex = document.createElement("input");
+        let HiddenNombre = document.createElement("input");
+        HiddenIndex.name = "Departamentos.Index";
+        HiddenIndex.value = num;
+        HiddenIndex.type = "hidden";
+        HiddenNombre.name = "Departamentos[" + num + "]";
+        HiddenNombre.value = Nombre;
+        HiddenNombre.type = "hidden";
+        DivDepartamentos.appendChild(HiddenIndex);
+        DivDepartamentos.appendChild(HiddenNombre);
+        
+
+        //Borrar el valor del input para agregar mas
+        document.getElementById("NombreDepartamento").value = "";
+
+        num++;
+
+    }
+</script>
+
+
