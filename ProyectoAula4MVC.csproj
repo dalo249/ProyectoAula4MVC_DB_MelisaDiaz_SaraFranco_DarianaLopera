@@ -131,12 +131,11 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\DepartamentosController.cs" />
     <Compile Include="Controllers\EstadisticasController.cs" />
-    <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\IdeasDeNegocioController.cs" />
-    <Compile Include="Controllers\Ideas_De_NegocioController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\AnalizadorEstadisticasDTO.cs" />
     <Compile Include="Models\DB\DB.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -239,14 +238,6 @@
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
-    <Content Include="Views\Home\About.cshtml" />
-    <Content Include="Views\Home\Contact.cshtml" />
-    <Content Include="Views\Home\Index.cshtml" />
-    <Content Include="Views\Ideas_De_Negocio\Create.cshtml" />
-    <Content Include="Views\Ideas_De_Negocio\Delete.cshtml" />
-    <Content Include="Views\Ideas_De_Negocio\Details.cshtml" />
-    <Content Include="Views\Ideas_De_Negocio\Edit.cshtml" />
-    <Content Include="Views\Ideas_De_Negocio\Index.cshtml" />
     <Content Include="Views\IdeasDeNegocio\RegistrarIdea.cshtml" />
     <Content Include="Views\IdeasDeNegocio\Index.cshtml" />
     <Content Include="Views\IdeasDeNegocio\DetallesIdea.cshtml" />

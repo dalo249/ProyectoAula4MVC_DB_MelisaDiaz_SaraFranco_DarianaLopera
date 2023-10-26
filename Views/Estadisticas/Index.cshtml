@@ -1,4 +1,4 @@
-﻿
+﻿@model ProyectoAula4MVC.Models.ViewModels.EstadisticasViewModel
 @{
     ViewBag.Title = "Estadisticas";
 }
@@ -9,7 +9,7 @@
     <table class="table">
         <thead>
             <tr>
-                <th>Codigo</th>
+
                 <th>Nombre</th>
                 <th>Valor inversion</th>
                 <th>Total ingresos</th>
@@ -17,17 +17,17 @@
             </tr>
         </thead>
         <tbody>
-     
-            
+            @foreach (var idea in Model.ideasMayorRentabilidad)
+            {
                 <tr>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td> </td>
+
+                    <td>@idea.Nombre</td>
+                    <td>@idea.Valor_Inversion</td>
+                    <td>@idea.Total_Ingresos</td>
+                    <td>@(@idea.Total_Ingresos - idea.Valor_Inversion) </td>
 
                 </tr>
-            
+            }
 
         </tbody>
     </table>
@@ -36,31 +36,27 @@
     <table class="table">
         <thead>
             <tr>
-                <th>Codigo</th>
                 <th>Nombre</th>
-                <th>Impacto</th>
                 <th>Departamentos</th>
             </tr>
         </thead>
         <tbody>
-            
-            
+            @foreach (var idea in Model.ideasMas3Deptos)
+            {
                 <tr>
-                    <td></td>
-                    <td></td>
-                    <td></td>
+                    <td>@idea.Idea.Nombre</td>
                     <td>
                         <ul class="list-group">
-                            
-                            
-                                <li></li>
-                            
+                            @foreach (var depto in idea.Departamentos)
+                            {
+                                <li>@depto.Departamentos.Nombre</li>
+                            }
                         </ul>
                     </td>
                     <td>
 
                 </tr>
-            
+            }
 
         </tbody>
     </table>
@@ -68,31 +64,19 @@
     <table class="table">
         <thead>
             <tr>
-                <th>Codigo</th>
                 <th>Nombre</th>
                 <th>Impacto</th>
-                <th>Herramientas 4 R.I</th>
             </tr>
         </thead>
         <tbody>
-  
-            
+            @foreach (var idea in Model.ideasUsanDesarrolloSostenible)
+            {
                 <tr>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td>
-                        <ul class="list-group">
-                            
-                            
-                                <li></li>
-                            
-                        </ul>
-                    </td>
-
+                    <td>@idea.Nombre</td>
+                    <td>@idea.Impactos.Nombre</td>
 
                 </tr>
-            
+            }
 
         </tbody>
     </table>
@@ -101,23 +85,23 @@
     <table class="table">
         <thead>
             <tr>
-                <th>Codigo</th>
                 <th>Nombre</th>
                 <th>Valor inversion</th>
                 <th>Total ingresos</th>
+                <th>Ganacias</th>
             </tr>
         </thead>
         <tbody>
-            
-            
+            @foreach (var idea in Model.ideasRentabilidadMayorPromedio)
+            {
                 <tr>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
+                    <td>@idea.Nombre</td>
+                    <td>@idea.Valor_Inversion</td>
+                    <td>@idea.Total_Ingresos</td>
+                    <td>@(@idea.Total_Ingresos - idea.Valor_Inversion) </td>
 
                 </tr>
-            
+            }
 
         </tbody>
     </table>
@@ -126,31 +110,18 @@
     <table class="table">
         <thead>
             <tr>
-                <th>Codigo</th>
                 <th>Nombre</th>
                 <th>Impacto</th>
-                <th>Herramientas 4 R.I</th>
             </tr>
         </thead>
         <tbody>
-            
-            
+            @foreach (var idea in Model.ideasUsanTerritoriosOTransicion)
+            {
                 <tr>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td>
-                        <ul class="list-group">
-                            
-                            
-                                <li></li>
-                            
-                        </ul>
-                    </td>
-
-
+                    <td>@idea.Nombre</td>
+                    <td>@idea.Impactos.Nombre</td>
                 </tr>
-            
+            }
 
         </tbody>
     </table>
@@ -159,60 +130,29 @@
     <table class="table">
         <thead>
             <tr>
-                <th>Codigo</th>
                 <th>Nombre</th>
-                <th>Impacto</th>
                 <th>Departamentos</th>
             </tr>
         </thead>
         <tbody>
             <tr>
-                <td></td>
-                <td></td>
-                <td></td>
+                <td>@Model.ideaMayorDeptos.Idea.Nombre</td>
                 <td>
                     <ul class="list-group">
-                        
-                        
-                            <li></li>
-                        
+                        @foreach (var depto in Model.ideaMayorDeptos.Departamentos)
+                        {
+                            <li>@depto.Departamentos.Nombre</li>
+                        }
                     </ul>
                 </td>
             </tr>
         </tbody>
     </table>
     <br>
-    <h4>7: Idea de negocio con mayor uso de herramientas 4 R.I </h4>
+    <h4>7: Idea de negocio con mayor valor de inversion en infraestructura </h4>
     <table class="table">
         <thead>
             <tr>
-                <th>Codigo</th>
-                <th>Nombre</th>
-                <th>Impacto</th>
-                <th>Herramientas 4 R.I</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td>
-                    <ul class="list-group">
-                        
-                            <li></li>
-                        
-                    </ul>
-                </td>
-            </tr>
-        </tbody>
-    </table>
-    <br>
-    <h4>8: Idea de negocio con mayor valor de inversion en infraestructura </h4>
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Codigo</th>
                 <th>Nombre</th>
                 <th>Valor de inversion</th>
                 <th>Valor de inversion en infraestructura</th>
@@ -220,41 +160,36 @@
         </thead>
         <tbody>
             <tr>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td> </td>
+                <td>@Model.ideaMayorInversionInfraestructura.Nombre</td>
+                <td>@Model.ideaMayorInversionInfraestructura.Valor_Inversion</td>
+                <td>@Model.ideaMayorInversionInfraestructura.Valor_Inversion_Infraestructura </td>
             </tr>
         </tbody>
     </table>
     <br>
-    <h4>9: Idea de negocio con mayor total de ingresos </h4>
+    <h4>8: Idea de negocio con mayor total de ingresos </h4>
     <table class="table">
         <thead>
             <tr>
-                <th>Codigo</th>
                 <th>Nombre</th>
-                <th>Valor de inversion</th>
                 <th>Total de ingresos</th>
                 <th>Ganancias</th>
             </tr>
         </thead>
         <tbody>
             <tr>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td> </td>
-                <td> </td>
+                <td>@Model.ideaMayorTotalIngresos.Nombre</td>
+                <td>@Model.ideaMayorTotalIngresos.Total_Ingresos </td>
+                <td>@(@Model.ideaMayorTotalIngresos.Total_Ingresos - Model.ideaMayorTotalIngresos.Valor_Inversion) </td>
             </tr>
         </tbody>
     </table>
     <br>
-    <h4>10: La suma total de ingresos es:  </h4>
+    <h4>9: La suma total de ingresos es: @Model.sumaTotalIngresos </h4>
     <br>
-    <h4>11: La suma total de inversiones es: </h4>
+    <h4>10: La suma total de inversiones es: @Model.sumaTotalInversiones </h4>
     <br>
-    <h4>12: El total de ideas de negocio que usan la herramienta Inteligencia artificial:  </h4>
+    <h4>11: El total de ideas de negocio que usan la herramienta Inteligencia artificial: @Model.totalIdeasUsanIA </h4>
 
 
 

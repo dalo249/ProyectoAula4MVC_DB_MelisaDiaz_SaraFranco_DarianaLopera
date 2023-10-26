@@ -1,15 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.Entity;
-using System.ComponentModel.Design;
 using System.Linq;
-using System.Web;
 using System.Web.Mvc;
-using Microsoft.Ajax.Utilities;
 using ProyectoAula4MVC.Models;
 using ProyectoAula4MVC.Models.DB;
 using ProyectoAula4MVC.Models.ViewModels;
-using System.Linq;
 using System.Net;
 
 namespace ProyectoAula4MVC.Controllers
@@ -78,7 +74,7 @@ namespace ProyectoAula4MVC.Controllers
 
                 return RedirectToAction("Index");
             }
-            catch (Exception ex) 
+            catch 
             {
                 return View(model);
             }
